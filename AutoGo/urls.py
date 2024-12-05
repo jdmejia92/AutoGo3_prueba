@@ -16,30 +16,33 @@ Including another URLconf
 """
 from django.contrib import admin
 from reservas.views import VehiculoListView, VehiculoDetailView, VehiculoCreateView, VehiculoUpdateView, VehiculoDeleteView, UsuarioListView, UsuarioDetailView, UsuarioCreateView, UsuarioUpdateView, UsuarioDeleteView, home
-from django.urls import path, include
+from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
-
-urlpatterns = [
-    path('', home, name='home'),
-    path('usuarios/', include('usuarios.urls')),  # Ruta para usuarios
-    path('vehiculos/', include('vehiculos.urls')),  # Ruta para vehículos
-    ##########################################
-    # Vehiculo
-    ##########################################
+##########################################
+# Usuario
+##########################################
+    path('usuarios/', UsuarioListView.as_view(), name='usuario_list'),
+    path('usuarios/<int:pk>/', UsuarioDetailView.as_view(), name='usuario_detail'),
+    path('usuarios/nuevo/', UsuarioCreateView.as_view(), name='usuario_create'),
+    path('usuarios/<int:pk>/editar/', UsuarioUpdateView.as_view(), name='usuario_update'),
+    path('usuarios/<int:pk>/eliminar/', UsuarioDeleteView.as_view(), name='usuario_delete'),
+##########################################
+# Vehiculo
+##########################################
     path('vehiculos/', VehiculoListView.as_view(), name='vehiculo_list'),
     path('vehiculos/<int:pk>/', VehiculoDetailView.as_view(), name='vehiculo_detail'),
     path('vehiculos/nuevo/', VehiculoCreateView.as_view(), name='vehiculo_create'),
     path('vehiculos/<int:pk>/editar/', VehiculoUpdateView.as_view(), name='vehiculo_update'),
     path('vehiculos/<int:pk>/eliminar/', VehiculoDeleteView.as_view(), name='vehiculo_delete'),
-    ##########################################
-    # Usuario
-    ##########################################
-    path('usuario/', UsuarioListView.as_view(), name='usuario_list'),
-    path('usuario/<int:pk>/', UsuarioDetailView.as_view(), name='usuario_detail'),
-    path('usuario/nuevo/', UsuarioCreateView.as_view(), name='usuario_create'),
-    path('usuario/<int:pk>/editar/', UsuarioUpdateView.as_view(), name='usuario_update'),
-    path('usuario/<int:pk>/eliminar/', UsuarioDeleteView.as_view(), name='usuario_delete'),
+##########################################
+# Base
+##########################################
+    path('', home, name='home'),
 ]
+
+
+
+
+
