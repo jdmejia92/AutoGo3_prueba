@@ -4,6 +4,12 @@ from django.urls import reverse_lazy
 from .models import Vehiculo, Usuario
 
 ####################################################
+# BASE
+####################################################
+def home(request):
+    return render(request, 'home.html')
+
+####################################################
 # VEHICULO
 ####################################################
 # Listar todos los vehículos
