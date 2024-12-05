@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from reservas.views import VehiculoListView, VehiculoDetailView, VehiculoCreateView, VehiculoUpdateView, VehiculoDeleteView
+from reservas.views import VehiculoListView, VehiculoDetailView, VehiculoCreateView, VehiculoUpdateView, VehiculoDeleteView, UsuarioListView, UsuarioDetailView, UsuarioCreateView, UsuarioUpdateView, UsuarioDeleteView
 from django.urls import path
 
 urlpatterns = [
@@ -28,4 +28,12 @@ urlpatterns = [
     path('vehiculos/nuevo/', VehiculoCreateView.as_view(), name='vehiculo_create'),
     path('vehiculos/<int:pk>/editar/', VehiculoUpdateView.as_view(), name='vehiculo_update'),
     path('vehiculos/<int:pk>/eliminar/', VehiculoDeleteView.as_view(), name='vehiculo_delete'),
+    ##########################################
+    # Usuario
+    ##########################################
+    path('', UsuarioListView.as_view(), name='usuario_list'),
+    path('<int:pk>/', UsuarioDetailView.as_view(), name='usuario_detail'),
+    path('nuevo/', UsuarioCreateView.as_view(), name='usuario_create'),
+    path('<int:pk>/editar/', UsuarioUpdateView.as_view(), name='usuario_update'),
+    path('<int:pk>/eliminar/', UsuarioDeleteView.as_view(), name='usuario_delete'),
 ]

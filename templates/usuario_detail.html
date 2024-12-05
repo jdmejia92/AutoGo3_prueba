@@ -1,0 +1,7 @@
+<h1>Detalle del Usuario</h1>
+<p><strong>DNI:</strong> {{ object.DNI }}</p>
+<p><strong>Nombres:</strong> {{ object.Nombres }}</p>
+<p><strong>Correo:</strong> {{ object.Correo }}</p>
+<p><strong>Tier:</strong> {{ object.get_Tier_display }}</p>
+<a href="{% url 'usuario_update' object.pk %}">Editar</a>
+<a href="{% url 'usuario_list' %}">Volver</a>

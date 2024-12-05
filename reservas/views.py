@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from .models import Vehiculo
+from .models import Vehiculo, Usuario
 
-# Create your views here.
+####################################################
+# VEHICULO
+####################################################
 # Listar todos los vehículos
 class VehiculoListView(ListView):
     model = Vehiculo
@@ -34,3 +36,38 @@ class VehiculoDeleteView(DeleteView):
     model = Vehiculo
     template_name = 'vehiculo_confirm_delete.html'
     success_url = reverse_lazy('vehiculo_list')
+
+####################################################
+# USUARIO
+####################################################
+
+# Listar todos los usuarios
+class UsuarioListView(ListView):
+    model = Usuario
+    template_name = 'usuario_list.html'
+    context_object_name = 'usuarios'
+
+# Detalle de un usuario
+class UsuarioDetailView(DetailView):
+    model = Usuario
+    template_name = 'usuario_detail.html'
+
+# Crear un nuevo usuario
+class UsuarioCreateView(CreateView):
+    model = Usuario
+    template_name = 'usuario_form.html'
+    fields = ['DNI', 'Tier', 'Nombres', 'Correo', 'Contraseña']
+    success_url = reverse_lazy('usuario_list')
+
+# Editar un usuario existente
+class UsuarioUpdateView(UpdateView):
+    model = Usuario
+    template_name = 'usuario_form.html'
+    fields = ['DNI', 'Tier', 'Nombres', 'Correo', 'Contraseña']
+    success_url = reverse_lazy('usuario_list')
+
+# Eliminar un usuario
+class UsuarioDeleteView(DeleteView):
+    model = Usuario
+    template_name = 'usuario_confirm_delete.html'
+    success_url = reverse_lazy('usuario_list')
